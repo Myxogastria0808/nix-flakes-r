@@ -11,14 +11,14 @@
       system:
       let
         pkgs = inputs.nixpkgs.legacyPackages.${system};
-        rpkgs = with inputs.nixpkgs.legacyPackages.${system}.rPackages; [
+        rPackages = with pkgs.rPackages; [
           ggplot2
           ggsci
         ];
       in
       {
         devShells.default = pkgs.mkShell {
-          packages = with pkgs; [ R ] ++ rpkgs;
+          packages = with pkgs; [ R ] ++ rPackages;
         };
       }
     );
